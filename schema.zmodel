@@ -1,0 +1,56 @@
+// This is a sample model to get you started.
+
+plugin trpc {
+    provider = '@zenstackhq/trpc'
+    output = 'src/server/api/routers/generated'
+    version = 'v11'
+    importCreateRouter = "@/server/api/trpc"
+    importProcedure = "@/server/api/trpc"
+    zodSchemasImport = "@/lib/zenstack/zod"
+    generateClientHelpers = 'react'
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+enum UserType {
+    UserLocal
+    UserGoogle
+}
+
+model User {
+    id          String       @id @default(cuid())
+    companyId   String?
+    type        UserType
+
+    @@delegate(type)
+
+    userFolders UserFolder[]
+
+    @@allow('all', true)
+}
+
+model UserLocal extends User {
+    email    String
+    password String
+}
+
+model UserGoogle extends User {
+    googleId String
+}
+
+model UserFolder {
+    id     String @id @default(cuid())
+    userId String
+    path   String
+
+    user   User   @relation(fields: [userId], references: [id])
+
+    @@allow('all', true)
+}

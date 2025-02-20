@@ -1,0 +1,34 @@
+{
+  "scripts": {
+    "dev": "next dev --turbo",
+    "db:generate": "zenstack generate -o src/lib/zenstack --no-compile",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma db migrate"
+  },
+  "dependencies": {
+    "@prisma/client": "6.3.x",
+    "@t3-oss/env-nextjs": "^0.12.0",
+    "@tanstack/react-query": "^5.66.7",
+    "@trpc/client": "^11.0.0-rc.781",
+    "@trpc/react-query": "^11.0.0-rc.781",
+    "@trpc/server": "^11.0.0-rc.781",
+    "@zenstackhq/runtime": "^2.11.6",
+    "@zenstackhq/trpc": "^2.11.6",
+    "next": "15.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "trpc-transformer": "^3.2.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.7",
+    "prisma": "6.3.x",
+    "typescript": "^5",
+    "zenstack": "2.11.6"
+  }
+}
